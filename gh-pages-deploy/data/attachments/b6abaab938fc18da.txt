@@ -1,0 +1,4 @@
+tests/test_users.py:229: in test_put_user_returns_updated_at
+    assert "updatedAt" in body, "'updatedAt' timestamp missing from PUT response"
+E   AssertionError: 'updatedAt' timestamp missing from PUT response
+E   assert 'updatedAt' in {'_meta': {'context': 'rate_limited', 'cta': {'label': 'Get started', 'url': 'https://app.reqres.in/upgrade'}, 'docs_url': 'https://app.reqres.in/documentation', 'example_url': 'https://app.reqres.in/examples/notes-app', ...}, 'current_usage': {'daily_limit': 250, 'requests_today': 250, 'resets_at': '2026-05-12T00:00:00.000Z'}, 'error': 'rate_limit_exceeded', 'limit': 250, ...}

@@ -1,0 +1,5 @@
+tests/test_users.py:365: in test_delete_nonexistent_user
+    assert response.status_code == 204, (
+E   AssertionError: ReqRes mock returns 204 for all DELETEs, got 429
+E   assert 429 == 204
+E    +  where 429 = <Response [429]>.status_code

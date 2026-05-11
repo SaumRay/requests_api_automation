@@ -1,0 +1,6 @@
+tests/test_data_driven.py:161: in test_put_update_user
+    assert response.status_code == data["expected_status"], (
+E   AssertionError: [TC_USR_PUT_002] PUT — replace with completely different name and job
+E       Expected 200, got 429
+E   assert 429 == 200
+E    +  where 429 = <Response [429]>.status_code

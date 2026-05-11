@@ -1,0 +1,4 @@
+tests/test_schema_validation.py:86: in test_get_single_user_schema
+    assert response.status_code == 200
+E   assert 429 == 200
+E    +  where 429 = <Response [429]>.status_code

@@ -1,0 +1,4 @@
+tests/test_schema_validation.py:194: in test_login_success_schema
+    assert response.status_code == 200
+E   assert 429 == 200
+E    +  where 429 = <Response [429]>.status_code

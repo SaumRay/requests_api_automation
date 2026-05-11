@@ -1,0 +1,3 @@
+tests/test_users.py:209: in test_put_user_name_is_updated
+    assert body["name"] == "Updated Name", (
+E   KeyError: 'name'

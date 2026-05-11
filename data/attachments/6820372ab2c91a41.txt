@@ -1,0 +1,6 @@
+tests/test_data_driven.py:78: in test_get_single_user
+    assert response.status_code == expected_status, (
+E   AssertionError: [TC_USR_GET_004] GET user 0 — invalid id, expect 404
+E       GET /users/0 → Expected 404, got 429
+E   assert 429 == 404
+E    +  where 429 = <Response [429]>.status_code

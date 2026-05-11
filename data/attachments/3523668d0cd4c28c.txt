@@ -1,0 +1,4 @@
+tests/test_users.py:304: in test_patch_vs_put_difference
+    assert put_response.status_code == 200
+E   assert 429 == 200
+E    +  where 429 = <Response [429]>.status_code

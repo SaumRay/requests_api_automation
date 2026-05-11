@@ -1,0 +1,5 @@
+tests/test_users.py:176: in test_create_user_with_empty_payload
+    assert response.status_code == 201, (
+E   AssertionError: Expected 201 from mock API, got 429
+E   assert 429 == 201
+E    +  where 429 = <Response [429]>.status_code

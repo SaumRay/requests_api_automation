@@ -1,0 +1,5 @@
+tests/test_users.py:335: in test_delete_user_status_code
+    assert response.status_code == 204, (
+E   AssertionError: Expected 204 No Content, got 429
+E   assert 429 == 204
+E    +  where 429 = <Response [429]>.status_code

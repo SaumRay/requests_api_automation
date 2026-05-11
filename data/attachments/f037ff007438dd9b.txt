@@ -1,0 +1,4 @@
+tests/test_users.py:158: in test_create_user_returns_generated_id
+    assert "id" in body, "'id' field missing from create response"
+E   AssertionError: 'id' field missing from create response
+E   assert 'id' in {'_meta': {'context': 'rate_limited', 'cta': {'label': 'Get started', 'url': 'https://app.reqres.in/upgrade'}, 'docs_url': 'https://app.reqres.in/documentation', 'example_url': 'https://app.reqres.in/examples/notes-app', ...}, 'current_usage': {'daily_limit': 250, 'requests_today': 250, 'resets_at': '2026-05-12T00:00:00.000Z'}, 'error': 'rate_limit_exceeded', 'limit': 250, ...}

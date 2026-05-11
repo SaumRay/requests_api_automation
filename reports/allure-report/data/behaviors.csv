@@ -1,0 +1,8 @@
+"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"","","","71","15","47","3","0"
+"Blog Posts Module","Posts CRUD","DELETE Post","0","0","3","0","0"
+"Blog Posts Module","Posts CRUD","GET All Posts","0","0","3","0","0"
+"Blog Posts Module","Posts CRUD","PATCH Update Post","0","0","3","0","0"
+"Blog Posts Module","Posts CRUD","PUT Update Post","0","0","3","0","0"
+"Blog Posts Module","Posts CRUD","POST Create Post","0","0","4","0","0"
+"Blog Posts Module","Posts CRUD","GET Single Post","0","0","4","0","0"

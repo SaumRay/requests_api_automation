@@ -1,0 +1,5 @@
+tests/test_auth.py:139: in test_login_missing_password_returns_400
+    assert response.status_code == 400, (
+E   AssertionError: Expected 400 when password is missing, got 429
+E   assert 429 == 400
+E    +  where 429 = <Response [429]>.status_code

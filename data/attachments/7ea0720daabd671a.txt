@@ -1,0 +1,5 @@
+tests/test_users.py:97: in test_get_nonexistent_user_returns_404
+    assert response.status_code == 404, (
+E   AssertionError: Expected 404 for non-existent user, got 429
+E   assert 429 == 404
+E    +  where 429 = <Response [429]>.status_code

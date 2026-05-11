@@ -1,0 +1,5 @@
+tests/test_auth.py:67: in test_valid_login_token_min_length
+    assert len(token) > 5, f"Token too short: '{token}' (len={len(token)})"
+E   AssertionError: Token too short: '' (len=0)
+E   assert 0 > 5
+E    +  where 0 = len('')

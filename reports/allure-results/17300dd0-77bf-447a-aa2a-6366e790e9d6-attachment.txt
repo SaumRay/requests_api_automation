@@ -1,0 +1,3 @@
+tests/test_schema_validation.py:146: in test_put_update_user_updated_at_is_string
+    assert isinstance(body["updatedAt"], str), "'updatedAt' must be a string"
+E   KeyError: 'updatedAt'

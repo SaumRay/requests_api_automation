@@ -1,0 +1,3 @@
+tests/test_users.py:272: in test_patch_user_only_name
+    assert body["name"] == "Only Name Changed", (
+E   KeyError: 'name'

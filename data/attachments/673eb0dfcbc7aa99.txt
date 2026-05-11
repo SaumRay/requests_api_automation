@@ -1,0 +1,5 @@
+tests/test_schema_validation.py:207: in test_login_success_token_is_non_empty_string
+    assert isinstance(token, str) and len(token) > 0, (
+E   AssertionError: Token must be a non-empty string. Got: None
+E   assert (False)
+E    +  where False = isinstance(None, str)

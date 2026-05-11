@@ -1,0 +1,3 @@
+tests/test_users.py:219: in test_put_user_job_is_updated
+    assert body["job"] == "Principal QA", (
+E   KeyError: 'job'

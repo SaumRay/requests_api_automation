@@ -1,0 +1,6 @@
+tests/test_data_driven.py:242: in test_delete_user
+    assert response.status_code == data["expected_status"], (
+E   AssertionError: [TC_USR_DEL_002] DELETE user 2 — expect 204 and empty body
+E       Expected 204, got 429
+E   assert 429 == 204
+E    +  where 429 = <Response [429]>.status_code

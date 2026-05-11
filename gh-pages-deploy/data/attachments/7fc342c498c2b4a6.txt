@@ -1,0 +1,3 @@
+tests/test_users.py:148: in test_create_user_returns_job
+    assert body["job"] == "Automation Lead", (
+E   KeyError: 'job'

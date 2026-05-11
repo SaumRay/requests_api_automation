@@ -1,0 +1,3 @@
+tests/test_users.py:138: in test_create_user_returns_name
+    assert body["name"] == "Jane Smith", (
+E   KeyError: 'name'

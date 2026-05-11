@@ -1,0 +1,3 @@
+tests/test_schema_validation.py:119: in test_post_create_user_id_is_string
+    assert isinstance(body["id"], str), (
+E   KeyError: 'id'

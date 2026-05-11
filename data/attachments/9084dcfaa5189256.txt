@@ -1,0 +1,4 @@
+tests/test_schema_validation.py:287: in test_register_error_schema_missing_password
+    assert response.status_code == 400
+E   assert 429 == 400
+E    +  where 429 = <Response [429]>.status_code

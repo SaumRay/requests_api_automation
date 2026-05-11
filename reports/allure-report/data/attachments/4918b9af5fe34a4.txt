@@ -1,0 +1,5 @@
+tests/test_users.py:351: in test_delete_different_user_ids
+    assert response.status_code == 204, (
+E   AssertionError: Expected 204 for user_id=1, got 429
+E   assert 429 == 204
+E    +  where 429 = <Response [429]>.status_code

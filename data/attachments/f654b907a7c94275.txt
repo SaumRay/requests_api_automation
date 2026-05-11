@@ -1,0 +1,3 @@
+tests/test_users.py:282: in test_patch_user_only_job
+    assert body["job"] == "Patched Job Title", (
+E   KeyError: 'job'

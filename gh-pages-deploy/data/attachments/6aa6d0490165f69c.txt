@@ -1,0 +1,5 @@
+tests/test_auth.py:57: in test_valid_login_token_is_string
+    assert isinstance(token, str), f"Expected string token, got {type(token).__name__}"
+E   AssertionError: Expected string token, got NoneType
+E   assert False
+E    +  where False = isinstance(None, str)

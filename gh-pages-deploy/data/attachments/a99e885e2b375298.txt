@@ -1,0 +1,3 @@
+tests/test_users.py:88: in test_get_single_user_email_format
+    user = response.json()["data"]
+E   KeyError: 'data'

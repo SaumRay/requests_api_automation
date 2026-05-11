@@ -1,0 +1,393 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Mon May 11 09:45:39 UTC 2026","Mon May 11 09:46:45 UTC 2026","65927","tests","test_data_driven","TestUsersDataDriven","","","test_patch_update_user[TC_USR_PATCH_002-data1]","
+        PATCH /users/{id} — parametrized across partial update scenarios:
+          TC_USR_PATCH_001: only name updated
+          TC_USR_PATCH_002: only job updated
+          TC_USR_PATCH_003: both name and job updated
+
+        Verifies that the changed field is reflected in the response.
+        "
+"failed","Mon May 11 09:55:48 UTC 2026","Mon May 11 09:56:54 UTC 2026","65911","tests","test_schema_validation","TestUserSchemas","","","test_get_users_list_schema","GET /users — full response must match GET_USERS_LIST_SCHEMA."
+"failed","Mon May 11 09:43:27 UTC 2026","Mon May 11 09:44:33 UTC 2026","66050","tests","test_data_driven","TestUsersDataDriven","","","test_put_update_user[TC_USR_PUT_003-data2]","
+        PUT /users/{id} — parametrized across 3 full-replacement scenarios.
+        Verifies status 200, name/job match exactly, updatedAt present,
+        and schema compliance for each case.
+
+        Test cases: TC_USR_PUT_001 → TC_USR_PUT_003
+        "
+"passed","Mon May 11 10:17:49 UTC 2026","Mon May 11 10:17:49 UTC 2026","510","tests","test_schema_validation","TestPostSchemas","","","test_get_single_post_schema","GET /posts/1 — response must match GET_SINGLE_POST_SCHEMA."
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","0","tests","test_data_driven","TestDataLoader","","","test_get_raw_list_returns_list_of_dicts","get_raw_list() should return a list of dicts."
+"passed","Mon May 11 09:56:54 UTC 2026","Mon May 11 09:58:00 UTC 2026","65911","tests","test_schema_validation","TestUserSchemas","","","test_get_users_list_each_user_has_integer_id","GET /users — every user in 'data' must have an integer 'id'."
+"failed","Mon May 11 09:52:14 UTC 2026","Mon May 11 09:53:20 UTC 2026","65920","tests","test_data_driven","TestAuthDataDriven","","","test_login_scenarios[TC_AUTH_LOGIN_003-data2]","
+        POST /login — parametrized across 5 login scenarios:
+          TC_AUTH_LOGIN_001: valid credentials   → 200 + token
+          TC_AUTH_LOGIN_002: wrong password      → 400 + error  [xfail: ReqRes demo limitation]
+          TC_AUTH_LOGIN_003: unknown email       → 400 + error
+          TC_AUTH_LOGIN_004: missing password    → 400 + error
+          TC_AUTH_LOGIN_005: empty payload       → 400 + error
+        "
+"passed","Mon May 11 09:55:32 UTC 2026","Mon May 11 09:55:33 UTC 2026","602","tests","test_data_driven","TestPostsDataDriven","","","test_get_single_post[TC_POST_GET_001-data0]","
+        GET /posts/{id} — parametrized across 4 scenarios:
+          TC_POST_GET_001: post 1    → 200
+          TC_POST_GET_002: post 50   → 200
+          TC_POST_GET_003: post 100  → 200
+          TC_POST_GET_004: post 9999 → 404
+        "
+"passed","Mon May 11 09:55:45 UTC 2026","Mon May 11 09:55:46 UTC 2026","574","tests","test_posts","TestDeletePost","","","DELETE /posts/1 returns 200",""
+"failed","Mon May 11 09:14:51 UTC 2026","Mon May 11 09:15:57 UTC 2026","65942","tests","test_auth","TestLogin","","","test_login_missing_password_returns_400","POST /login with only email — should return 400."
+"failed","Mon May 11 10:20:12 UTC 2026","Mon May 11 10:21:18 UTC 2026","65926","tests","test_users","TestGetUsers","","","test_get_all_users_pagination_fields","GET /users response should contain pagination metadata."
+"broken","Mon May 11 10:00:12 UTC 2026","Mon May 11 10:01:18 UTC 2026","65932","tests","test_schema_validation","TestUserSchemas","","","test_get_single_user_data_types","GET /users/2 — verify exact types: id=int, names=str, email=str."
+"passed","Mon May 11 09:55:34 UTC 2026","Mon May 11 09:55:35 UTC 2026","700","tests","test_data_driven","TestPostsDataDriven","","","test_create_post[TC_POST_CREATE_001-data0]","
+        POST /posts — parametrized across 3 create scenarios:
+          TC_POST_CREATE_001: short payload with userId 1
+          TC_POST_CREATE_002: short payload with userId 5
+          TC_POST_CREATE_003: long title + body payload
+
+        Verifies 201, all expected fields present, echoed values,
+        and schema compliance for each case.
+        "
+"passed","Mon May 11 09:24:45 UTC 2026","Mon May 11 09:26:57 UTC 2026","131848","tests","test_auth","TestTokenInjection","","","test_token_consistent_across_multiple_calls","Same credentials should return same token on each login."
+"passed","Mon May 11 09:13:46 UTC 2026","Mon May 11 09:14:51 UTC 2026","65943","tests","test_auth","TestLogin","","","test_invalid_login_no_token_in_error_response","POST /login failure — 'token' must NOT appear in the error response."
+"passed","Mon May 11 09:55:37 UTC 2026","Mon May 11 09:55:37 UTC 2026","507","tests","test_posts","TestGetPosts","","","GET /posts returns a non-empty list",""
+"failed","Mon May 11 09:08:15 UTC 2026","Mon May 11 09:09:21 UTC 2026","65948","tests","test_auth","TestLogin","","","test_valid_login_token_is_string","POST /login — the returned token must be a string."
+"passed","Mon May 11 09:58:00 UTC 2026","Mon May 11 09:59:06 UTC 2026","65913","tests","test_schema_validation","TestUserSchemas","","","test_get_users_list_each_user_email_is_string","GET /users — every user's 'email' must be a string."
+"failed","Mon May 11 10:21:18 UTC 2026","Mon May 11 10:22:24 UTC 2026","65790","tests","test_users","TestGetUsers","","","test_get_all_users_page_2","GET /users?page=2 should return page 2 data."
+"passed","Mon May 11 09:55:46 UTC 2026","Mon May 11 09:55:47 UTC 2026","572","tests","test_posts","TestDeletePost","","","DELETE /posts/1 returns empty object",""
+"passed","Mon May 11 10:17:48 UTC 2026","Mon May 11 10:17:49 UTC 2026","507","tests","test_schema_validation","TestPostSchemas","","","test_get_posts_list_types","GET /posts — verify integer ids and string titles/bodies."
+"failed","Mon May 11 10:35:36 UTC 2026","Mon May 11 10:36:42 UTC 2026","66047","tests","test_users","TestUpdateUserPut","","","test_put_user_status_code","PUT /users/2 should return 200 OK."
+"failed","Mon May 11 09:36:51 UTC 2026","Mon May 11 09:37:57 UTC 2026","65923","tests","test_data_driven","TestUsersDataDriven","","","test_create_user[TC_USR_CREATE_002-data1]","
+        POST /users — parametrized across 5 different user payloads.
+        Verifies status 201, all expected fields present,
+        echoed name/job, and schema compliance for each case.
+
+        Test cases: TC_USR_CREATE_001 → TC_USR_CREATE_005
+        "
+"passed","Mon May 11 10:17:51 UTC 2026","Mon May 11 10:17:51 UTC 2026","569","tests","test_schema_validation","TestPostSchemas","","","test_post_create_post_returns_integer_id","POST /posts — newly created post 'id' must be an integer."
+"failed","Mon May 11 09:24:45 UTC 2026","Mon May 11 09:24:45 UTC 2026","0","tests","test_auth","TestTokenInjection","","","test_authenticated_client_can_make_get_request","Authenticated GET /users/2 should return 200."
+"passed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:17:52 UTC 2026","1","tests","test_schema_validation","TestSchemaValidatorBehavior","","","test_error_message_includes_field_path","
+        AssertionError message from validate() must mention the failing field path.
+        This is critical for debugging failures in CI pipelines.
+        "
+"failed","Mon May 11 10:48:47 UTC 2026","Mon May 11 10:49:53 UTC 2026","65795","tests","test_users","TestDeleteUser","","","test_delete_different_user_ids","DELETE should return 204 for any valid user id."
+"failed","Mon May 11 09:39:03 UTC 2026","Mon May 11 09:40:09 UTC 2026","65924","tests","test_data_driven","TestUsersDataDriven","","","test_create_user[TC_USR_CREATE_004-data3]","
+        POST /users — parametrized across 5 different user payloads.
+        Verifies status 201, all expected fields present,
+        echoed name/job, and schema compliance for each case.
+
+        Test cases: TC_USR_CREATE_001 → TC_USR_CREATE_005
+        "
+"passed","Mon May 11 09:55:44 UTC 2026","Mon May 11 09:55:44 UTC 2026","571","tests","test_posts","TestUpdatePostPatch","","","PATCH /posts/1 returns 200",""
+"passed","Mon May 11 09:55:43 UTC 2026","Mon May 11 09:55:43 UTC 2026","572","tests","test_posts","TestUpdatePostPut","","","PUT /posts/1 — all fields replaced correctly",""
+"failed","Mon May 11 09:07:10 UTC 2026","Mon May 11 09:08:15 UTC 2026","65943","tests","test_auth","TestLogin","","","test_valid_login_returns_token","POST /login — response must contain a 'token'."
+"failed","Mon May 11 10:46:35 UTC 2026","Mon May 11 10:47:42 UTC 2026","66051","tests","test_users","TestDeleteUser","","","test_delete_user_status_code","DELETE /users/2 should return 204 No Content."
+"broken","Mon May 11 10:31:12 UTC 2026","Mon May 11 10:32:18 UTC 2026","65927","tests","test_users","TestCreateUser","","","test_create_user_returns_job","POST /users response should echo back the 'job' we sent."
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","0","tests","test_data_driven","TestDataLoader","","","test_create_users_data_has_required_payload_fields","Every create_users test case must have 'name' and 'job' in payload."
+"failed","Mon May 11 10:45:29 UTC 2026","Mon May 11 10:46:35 UTC 2026","66059","tests","test_users","TestUpdateUserPatch","","","test_patch_vs_put_difference","
+        Demonstrates PUT vs PATCH distinction:
+        - PUT  : sends full payload {""name"": ..., ""job"": ...}
+        - PATCH: sends partial payload {""job"": ...} only
+        Both return 200, but PATCH only carries the changed field.
+        "
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","0","tests","test_data_driven","TestDataLoader","","","test_get_ids_returns_list_of_strings","get_ids() should return a flat list of string IDs."
+"failed","Mon May 11 09:09:21 UTC 2026","Mon May 11 09:10:27 UTC 2026","65947","tests","test_auth","TestLogin","","","test_valid_login_token_min_length","POST /login — token length should be > 5 chars."
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","0","tests","test_data_driven","TestDataLoader","","","test_get_parametrize_data_tuple_has_tc_id_and_dict","Each tuple from get_parametrize_data() should be (str_id, dict)."
+"failed","Mon May 11 09:31:21 UTC 2026","Mon May 11 09:32:27 UTC 2026","66057","tests","test_data_driven","TestUsersDataDriven","","","test_get_single_user[TC_USR_GET_001-data0]","
+        GET /users/{user_id} — parametrized across valid and invalid user IDs.
+        Test cases include: existing users (200) and non-existent IDs (404).
+
+        Test cases: TC_USR_GET_001 → TC_USR_GET_004
+        "
+"passed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:17:52 UTC 2026","575","tests","test_schema_validation","TestPostSchemas","","","test_patch_update_post_schema","PATCH /posts/1 — partial update response must match PATCH_UPDATE_POST_SCHEMA."
+"passed","Mon May 11 09:55:43 UTC 2026","Mon May 11 09:55:44 UTC 2026","572","tests","test_posts","TestUpdatePostPut","","","PUT /posts/1 — schema validation",""
+"broken","Mon May 11 10:15:35 UTC 2026","Mon May 11 10:16:41 UTC 2026","65917","tests","test_schema_validation","TestAuthSchemas","","","test_register_success_id_is_integer","POST /register success — 'id' must be an integer (unlike POST /users)."
+"failed","Mon May 11 09:51:08 UTC 2026","Mon May 11 09:52:14 UTC 2026","65920","tests","test_data_driven","TestAuthDataDriven","","","test_login_scenarios[TC_AUTH_LOGIN_001-data0]","
+        POST /login — parametrized across 5 login scenarios:
+          TC_AUTH_LOGIN_001: valid credentials   → 200 + token
+          TC_AUTH_LOGIN_002: wrong password      → 400 + error  [xfail: ReqRes demo limitation]
+          TC_AUTH_LOGIN_003: unknown email       → 400 + error
+          TC_AUTH_LOGIN_004: missing password    → 400 + error
+          TC_AUTH_LOGIN_005: empty payload       → 400 + error
+        "
+"failed","Mon May 11 10:44:23 UTC 2026","Mon May 11 10:45:29 UTC 2026","65928","tests","test_users","TestUpdateUserPatch","","","test_patch_user_returns_updated_at","PATCH /users/2 — response should include 'updatedAt' timestamp."
+"passed","Mon May 11 09:55:41 UTC 2026","Mon May 11 09:55:42 UTC 2026","574","tests","test_posts","TestCreatePost","","","POST /posts — schema validation",""
+"broken","Mon May 11 10:42:12 UTC 2026","Mon May 11 10:43:18 UTC 2026","65919","tests","test_users","TestUpdateUserPatch","","","test_patch_user_only_name","PATCH /users/2 with only 'name' — response should reflect new name."
+"failed","Mon May 11 10:47:42 UTC 2026","Mon May 11 10:48:47 UTC 2026","65791","tests","test_users","TestDeleteUser","","","test_delete_user_empty_response_body","DELETE /users/2 — response body should be empty."
+"passed","Mon May 11 09:55:38 UTC 2026","Mon May 11 09:55:39 UTC 2026","507","tests","test_posts","TestGetPosts","","","GET /posts/1 has all required fields",""
+"passed","Mon May 11 09:55:33 UTC 2026","Mon May 11 09:55:33 UTC 2026","515","tests","test_data_driven","TestPostsDataDriven","","","test_get_single_post[TC_POST_GET_002-data1]","
+        GET /posts/{id} — parametrized across 4 scenarios:
+          TC_POST_GET_001: post 1    → 200
+          TC_POST_GET_002: post 50   → 200
+          TC_POST_GET_003: post 100  → 200
+          TC_POST_GET_004: post 9999 → 404
+        "
+"broken","Mon May 11 10:36:42 UTC 2026","Mon May 11 10:37:48 UTC 2026","65922","tests","test_users","TestUpdateUserPut","","","test_put_user_name_is_updated","PUT /users/2 — response should reflect the updated name."
+"failed","Mon May 11 09:50:02 UTC 2026","Mon May 11 09:51:08 UTC 2026","65925","tests","test_data_driven","TestUsersDataDriven","","","test_delete_user[TC_USR_DEL_003-data2]","
+        DELETE /users/{id} — parametrized across 3 user IDs.
+        Verifies 204 status and empty response body for each.
+
+        Test cases: TC_USR_DEL_001 → TC_USR_DEL_003
+        "
+"passed","Mon May 11 09:55:47 UTC 2026","Mon May 11 09:55:48 UTC 2026","1719","tests","test_posts","TestDeletePost","","","DELETE multiple posts — all return 200",""
+"failed","Mon May 11 09:15:57 UTC 2026","Mon May 11 09:17:03 UTC 2026","65957","tests","test_auth","TestLogin","","","test_login_missing_email_returns_400","POST /login with only password — should return 400."
+"passed","Mon May 11 10:17:50 UTC 2026","Mon May 11 10:17:51 UTC 2026","697","tests","test_schema_validation","TestPostSchemas","","","test_post_create_post_schema","POST /posts — creation response must match POST_CREATE_POST_SCHEMA."
+"failed","Mon May 11 10:19:07 UTC 2026","Mon May 11 10:20:12 UTC 2026","65926","tests","test_users","TestGetUsers","","","test_get_all_users_returns_list","GET /users response body should contain a 'data' list."
+"skipped","Mon May 11 10:11:12 UTC 2026","Mon May 11 10:12:18 UTC 2026","65933","tests","test_schema_validation","TestAuthSchemas","","","test_login_error_schema_wrong_password","
+        POST /login with wrong password — error body must match LOGIN_ERROR_SCHEMA.
+
+        KNOWN ISSUE: ReqRes demo API no longer returns 400 for known registered
+        emails with wrong passwords. It returns 200 + token with
+        _meta.context='legacy_success'. Marked xfail to document the regression.
+        "
+"failed","Mon May 11 09:29:09 UTC 2026","Mon May 11 09:30:15 UTC 2026","66057","tests","test_auth","TestUnauthorizedAccess","","","test_login_with_unregistered_user_returns_400","POST /login with unknown email → 400."
+"passed","Mon May 11 09:55:41 UTC 2026","Mon May 11 09:55:41 UTC 2026","572","tests","test_posts","TestCreatePost","","","POST /posts returns integer id",""
+"failed","Mon May 11 09:24:45 UTC 2026","Mon May 11 09:24:45 UTC 2026","0","tests","test_auth","TestTokenInjection","","","test_clear_auth_token_removes_header","clear_auth_token() should remove the Authorization header."
+"passed","Mon May 11 09:55:37 UTC 2026","Mon May 11 09:55:38 UTC 2026","512","tests","test_posts","TestGetPosts","","","GET /posts — schema validation",""
+"passed","Mon May 11 09:55:35 UTC 2026","Mon May 11 09:55:36 UTC 2026","574","tests","test_data_driven","TestPostsDataDriven","","","test_create_post[TC_POST_CREATE_003-data2]","
+        POST /posts — parametrized across 3 create scenarios:
+          TC_POST_CREATE_001: short payload with userId 1
+          TC_POST_CREATE_002: short payload with userId 5
+          TC_POST_CREATE_003: long title + body payload
+
+        Verifies 201, all expected fields present, echoed values,
+        and schema compliance for each case.
+        "
+"passed","Mon May 11 10:17:49 UTC 2026","Mon May 11 10:17:50 UTC 2026","507","tests","test_schema_validation","TestPostSchemas","","","test_get_single_post_id_matches_requested","GET /posts/1 — response 'id' must equal the requested ID."
+"passed","Mon May 11 10:17:48 UTC 2026","Mon May 11 10:17:48 UTC 2026","507","tests","test_schema_validation","TestPostSchemas","","","test_get_posts_list_all_items_have_required_fields","GET /posts — every post must have userId, id, title, body."
+"failed","Mon May 11 09:40:09 UTC 2026","Mon May 11 09:41:15 UTC 2026","65923","tests","test_data_driven","TestUsersDataDriven","","","test_create_user[TC_USR_CREATE_005-data4]","
+        POST /users — parametrized across 5 different user payloads.
+        Verifies status 201, all expected fields present,
+        echoed name/job, and schema compliance for each case.
+
+        Test cases: TC_USR_CREATE_001 → TC_USR_CREATE_005
+        "
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","0","tests","test_data_driven","TestDataLoader","","","test_login_scenarios_all_have_expected_status","Every login_scenarios test case must define expected_status."
+"passed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:17:52 UTC 2026","1","tests","test_schema_validation","TestSchemaValidatorBehavior","","","test_is_valid_returns_false_for_invalid_data","schema_validator.is_valid() must return False for invalid data."
+"failed","Mon May 11 10:12:18 UTC 2026","Mon May 11 10:13:24 UTC 2026","65920","tests","test_schema_validation","TestAuthSchemas","","","test_login_error_schema_missing_fields","POST /login with empty body — error body must match LOGIN_ERROR_SCHEMA."
+"failed","Mon May 11 09:44:33 UTC 2026","Mon May 11 09:45:39 UTC 2026","66052","tests","test_data_driven","TestUsersDataDriven","","","test_patch_update_user[TC_USR_PATCH_001-data0]","
+        PATCH /users/{id} — parametrized across partial update scenarios:
+          TC_USR_PATCH_001: only name updated
+          TC_USR_PATCH_002: only job updated
+          TC_USR_PATCH_003: both name and job updated
+
+        Verifies that the changed field is reflected in the response.
+        "
+"failed","Mon May 11 10:14:30 UTC 2026","Mon May 11 10:15:35 UTC 2026","65919","tests","test_schema_validation","TestAuthSchemas","","","test_register_success_schema","POST /register success — must match REGISTER_SUCCESS_SCHEMA."
+"failed","Mon May 11 09:46:45 UTC 2026","Mon May 11 09:47:50 UTC 2026","65788","tests","test_data_driven","TestUsersDataDriven","","","test_patch_update_user[TC_USR_PATCH_003-data2]","
+        PATCH /users/{id} — parametrized across partial update scenarios:
+          TC_USR_PATCH_001: only name updated
+          TC_USR_PATCH_002: only job updated
+          TC_USR_PATCH_003: both name and job updated
+
+        Verifies that the changed field is reflected in the response.
+        "
+"failed","Mon May 11 09:24:45 UTC 2026","Mon May 11 09:24:45 UTC 2026","0","tests","test_auth","TestTokenInjection","","","test_authenticated_client_fixture_has_token","authenticated_user_client fixture should pre-set Bearer token."
+"passed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:17:52 UTC 2026","1","tests","test_schema_validation","TestSchemaValidatorBehavior","","","test_validator_raises_on_missing_required_field","schema_validator.validate() must raise AssertionError if required field is absent."
+"broken","Mon May 11 10:24:36 UTC 2026","Mon May 11 10:25:42 UTC 2026","65930","tests","test_users","TestGetUsers","","","test_get_single_user_has_required_fields","GET /users/2 response should have id, email, first_name, last_name."
+"failed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:19:07 UTC 2026","74060","tests","test_users","TestGetUsers","","","test_get_all_users_status_code","GET /users should return 200 OK."
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","0","tests","test_data_driven","TestDataLoader","","","test_load_json_has_expected_keys","users.json should contain all expected top-level keys."
+"failed","Mon May 11 10:16:41 UTC 2026","Mon May 11 10:17:47 UTC 2026","65925","tests","test_schema_validation","TestAuthSchemas","","","test_register_error_schema_missing_password","POST /register without password — error body must match REGISTER_ERROR_SCHEMA."
+"passed","Mon May 11 09:55:45 UTC 2026","Mon May 11 09:55:45 UTC 2026","574","tests","test_posts","TestUpdatePostPatch","","","PATCH /posts/1 — schema validation",""
+"failed","Mon May 11 09:24:45 UTC 2026","Mon May 11 09:24:45 UTC 2026","0","tests","test_auth","TestTokenInjection","","","test_set_auth_token_updates_headers","set_auth_token() should inject 'Bearer <token>' into headers."
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","0","tests","test_data_driven","TestDataLoader","","","test_get_parametrize_data_invalid_key_raises","get_parametrize_data() with a bad key should raise KeyError."
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","1","tests","test_data_driven","TestDataLoader","","","test_get_parametrize_data_ids_match_json","TC IDs from get_parametrize_data() should match the 'id' field in JSON."
+"passed","Mon May 11 10:17:47 UTC 2026","Mon May 11 10:17:48 UTC 2026","550","tests","test_schema_validation","TestPostSchemas","","","test_get_posts_list_schema","GET /posts — full array must match GET_POSTS_LIST_SCHEMA."
+"failed","Mon May 11 10:07:54 UTC 2026","Mon May 11 10:09:00 UTC 2026","65914","tests","test_schema_validation","TestUserSchemas","","","test_patch_only_sends_changed_field","
+        PATCH /users/2 with only 'job' — response should only contain
+        'job' and 'updatedAt'. 'name' must NOT appear.
+        This verifies PATCH does not echo back un-sent fields.
+        "
+"failed","Mon May 11 10:29:00 UTC 2026","Mon May 11 10:30:06 UTC 2026","66085","tests","test_users","TestCreateUser","","","test_create_user_status_code","POST /users should return 201 Created."
+"failed","Mon May 11 09:26:57 UTC 2026","Mon May 11 09:28:03 UTC 2026","66069","tests","test_auth","TestUnauthorizedAccess","","","test_request_without_token_still_returns_200_on_mock","
+        GET /users/2 without Authorization header.
+        With a valid x-api-key but no Bearer token, ReqRes still returns 200
+        for GET endpoints (Bearer is only needed for per-user sessions).
+        "
+"passed","Mon May 11 10:17:51 UTC 2026","Mon May 11 10:17:52 UTC 2026","700","tests","test_schema_validation","TestPostSchemas","","","test_put_update_post_schema","PUT /posts/1 — full update response must match PUT_UPDATE_POST_SCHEMA."
+"failed","Mon May 11 09:06:04 UTC 2026","Mon May 11 09:07:10 UTC 2026","65999","tests","test_auth","TestLogin","","","test_valid_login_status_code","POST /login with valid credentials should return 200 OK."
+"passed","Mon May 11 09:55:40 UTC 2026","Mon May 11 09:55:40 UTC 2026","573","tests","test_posts","TestCreatePost","","","POST /posts returns 201 Created",""
+"broken","Mon May 11 10:43:18 UTC 2026","Mon May 11 10:44:23 UTC 2026","65918","tests","test_users","TestUpdateUserPatch","","","test_patch_user_only_job","PATCH /users/2 with only 'job' — only job should be updated."
+"failed","Mon May 11 10:32:18 UTC 2026","Mon May 11 10:33:24 UTC 2026","65792","tests","test_users","TestCreateUser","","","test_create_user_returns_generated_id","POST /users response should contain a server-generated 'id'."
+"passed","Mon May 11 09:55:39 UTC 2026","Mon May 11 09:55:40 UTC 2026","509","tests","test_posts","TestGetPosts","","","GET /posts/9999 returns 404 Not Found",""
+"passed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:17:52 UTC 2026","1","tests","test_schema_validation","TestSchemaValidatorBehavior","","","test_validator_passes_valid_data","schema_validator.validate() must NOT raise for a valid payload."
+"failed","Mon May 11 10:38:54 UTC 2026","Mon May 11 10:40:00 UTC 2026","65924","tests","test_users","TestUpdateUserPut","","","test_put_user_returns_updated_at","PUT /users/2 — response should include an 'updatedAt' timestamp."
+"passed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:17:52 UTC 2026","2","tests","test_schema_validation","TestSchemaValidatorBehavior","","","test_validator_raises_on_extra_unexpected_field","
+        schema_validator.validate() must raise if an unexpected field appears
+        in a schema that uses additionalProperties: False.
+        JSONPlaceholder post schemas use strict mode — we use GET_SINGLE_POST_SCHEMA.
+        "
+"broken","Mon May 11 10:05:42 UTC 2026","Mon May 11 10:06:48 UTC 2026","65930","tests","test_schema_validation","TestUserSchemas","","","test_put_update_user_updated_at_is_string","PUT /users/2 — 'updatedAt' must be a non-empty string timestamp."
+"failed","Mon May 11 09:41:15 UTC 2026","Mon May 11 09:42:21 UTC 2026","66053","tests","test_data_driven","TestUsersDataDriven","","","test_put_update_user[TC_USR_PUT_001-data0]","
+        PUT /users/{id} — parametrized across 3 full-replacement scenarios.
+        Verifies status 200, name/job match exactly, updatedAt present,
+        and schema compliance for each case.
+
+        Test cases: TC_USR_PUT_001 → TC_USR_PUT_003
+        "
+"passed","Mon May 11 09:55:39 UTC 2026","Mon May 11 09:55:39 UTC 2026","509","tests","test_posts","TestGetPosts","","","GET /posts/1 — schema validation",""
+"failed","Mon May 11 09:23:39 UTC 2026","Mon May 11 09:23:39 UTC 2026","0","tests","test_auth","TestTokenInjection","","","test_auth_token_fixture_is_available","auth_token fixture should return a non-empty string token."
+"passed","Mon May 11 10:13:24 UTC 2026","Mon May 11 10:14:30 UTC 2026","65923","tests","test_schema_validation","TestAuthSchemas","","","test_login_error_has_no_token_field","
+        POST /login failure — token behavior check.
+        NOTE: ReqRes free tier returns token even for invalid credentials.
+        We document and accept this known free-tier limitation.
+        Real API: token must NOT appear in a 400 error response.
+        "
+"failed","Mon May 11 09:34:39 UTC 2026","Mon May 11 09:35:45 UTC 2026","66059","tests","test_data_driven","TestUsersDataDriven","","","test_get_single_user[TC_USR_GET_004-data3]","
+        GET /users/{user_id} — parametrized across valid and invalid user IDs.
+        Test cases include: existing users (200) and non-existent IDs (404).
+
+        Test cases: TC_USR_GET_001 → TC_USR_GET_004
+        "
+"passed","Mon May 11 09:22:33 UTC 2026","Mon May 11 09:23:39 UTC 2026","65923","tests","test_auth","TestRegister","","","test_register_missing_password_error_message","POST /register without password — response should have an 'error' message."
+"passed","Mon May 11 10:27:54 UTC 2026","Mon May 11 10:29:00 UTC 2026","66056","tests","test_users","TestGetUsers","","","test_get_response_content_type_is_json","GET /users should return Content-Type: application/json."
+"passed","Mon May 11 09:55:38 UTC 2026","Mon May 11 09:55:38 UTC 2026","508","tests","test_posts","TestGetPosts","","","GET /posts/1 returns 200 and correct id",""
+"failed","Mon May 11 09:47:50 UTC 2026","Mon May 11 09:48:56 UTC 2026","65925","tests","test_data_driven","TestUsersDataDriven","","","test_delete_user[TC_USR_DEL_001-data0]","
+        DELETE /users/{id} — parametrized across 3 user IDs.
+        Verifies 204 status and empty response body for each.
+
+        Test cases: TC_USR_DEL_001 → TC_USR_DEL_003
+        "
+"failed","Mon May 11 10:22:24 UTC 2026","Mon May 11 10:23:30 UTC 2026","66060","tests","test_users","TestGetUsers","","","test_get_single_user_status_code","GET /users/2 should return 200 OK."
+"skipped","Mon May 11 09:52:14 UTC 2026","Mon May 11 09:52:14 UTC 2026","0","tests","test_data_driven","TestAuthDataDriven","","","test_login_scenarios[TC_AUTH_LOGIN_002-data1]","
+        POST /login — parametrized across 5 login scenarios:
+          TC_AUTH_LOGIN_001: valid credentials   → 200 + token
+          TC_AUTH_LOGIN_002: wrong password      → 400 + error  [xfail: ReqRes demo limitation]
+          TC_AUTH_LOGIN_003: unknown email       → 400 + error
+          TC_AUTH_LOGIN_004: missing password    → 400 + error
+          TC_AUTH_LOGIN_005: empty payload       → 400 + error
+        "
+"failed","Mon May 11 09:37:57 UTC 2026","Mon May 11 09:39:03 UTC 2026","65933","tests","test_data_driven","TestUsersDataDriven","","","test_create_user[TC_USR_CREATE_003-data2]","
+        POST /users — parametrized across 5 different user payloads.
+        Verifies status 201, all expected fields present,
+        echoed name/job, and schema compliance for each case.
+
+        Test cases: TC_USR_CREATE_001 → TC_USR_CREATE_005
+        "
+"passed","Mon May 11 09:12:40 UTC 2026","Mon May 11 09:13:46 UTC 2026","65945","tests","test_auth","TestLogin","","","test_invalid_login_returns_error_message","POST /login with wrong credentials — response body should contain 'error'."
+"failed","Mon May 11 09:19:15 UTC 2026","Mon May 11 09:20:21 UTC 2026","65938","tests","test_auth","TestRegister","","","test_valid_register_returns_id","POST /register — response must contain a user 'id'."
+"passed","Mon May 11 09:55:34 UTC 2026","Mon May 11 09:55:34 UTC 2026","510","tests","test_data_driven","TestPostsDataDriven","","","test_get_single_post[TC_POST_GET_004-data3]","
+        GET /posts/{id} — parametrized across 4 scenarios:
+          TC_POST_GET_001: post 1    → 200
+          TC_POST_GET_002: post 50   → 200
+          TC_POST_GET_003: post 100  → 200
+          TC_POST_GET_004: post 9999 → 404
+        "
+"failed","Mon May 11 10:06:48 UTC 2026","Mon May 11 10:07:54 UTC 2026","65924","tests","test_schema_validation","TestUserSchemas","","","test_patch_update_user_schema","PATCH /users/2 — partial update response must match PATCH_UPDATE_USER_SCHEMA."
+"passed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:17:52 UTC 2026","3","tests","test_schema_validation","TestSchemaValidatorBehavior","","","test_validator_raises_on_wrong_type","schema_validator.validate() must raise if a field has the wrong type."
+"failed","Mon May 11 09:59:06 UTC 2026","Mon May 11 10:00:12 UTC 2026","66057","tests","test_schema_validation","TestUserSchemas","","","test_get_single_user_schema","GET /users/2 — response must match GET_SINGLE_USER_SCHEMA."
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","1","tests","test_data_driven","TestDataLoader","","","test_get_parametrize_data_returns_list_of_tuples","get_parametrize_data() should return a list of (id, dict) tuples."
+"broken","Mon May 11 10:37:48 UTC 2026","Mon May 11 10:38:54 UTC 2026","65917","tests","test_users","TestUpdateUserPut","","","test_put_user_job_is_updated","PUT /users/2 — response should reflect the updated job."
+"passed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:17:52 UTC 2026","0","tests","test_schema_validation","TestSchemaValidatorBehavior","","","test_get_validation_errors_returns_empty_list_for_valid","schema_validator.get_validation_errors() returns [] for valid data."
+"failed","Mon May 11 10:49:53 UTC 2026","Mon May 11 10:50:59 UTC 2026","65930","tests","test_users","TestDeleteUser","","","test_delete_nonexistent_user","
+        DELETE /users/9999 — ReqRes returns 204 even for non-existent IDs.
+        In a real app, this might return 404. This test documents the API behavior.
+        "
+"failed","Mon May 11 09:33:33 UTC 2026","Mon May 11 09:34:39 UTC 2026","66067","tests","test_data_driven","TestUsersDataDriven","","","test_get_single_user[TC_USR_GET_003-data2]","
+        GET /users/{user_id} — parametrized across valid and invalid user IDs.
+        Test cases include: existing users (200) and non-existent IDs (404).
+
+        Test cases: TC_USR_GET_001 → TC_USR_GET_004
+        "
+"failed","Mon May 11 09:42:21 UTC 2026","Mon May 11 09:43:27 UTC 2026","65929","tests","test_data_driven","TestUsersDataDriven","","","test_put_update_user[TC_USR_PUT_002-data1]","
+        PUT /users/{id} — parametrized across 3 full-replacement scenarios.
+        Verifies status 200, name/job match exactly, updatedAt present,
+        and schema compliance for each case.
+
+        Test cases: TC_USR_PUT_001 → TC_USR_PUT_003
+        "
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","0","tests","test_data_driven","TestDataLoader","","","test_load_json_returns_dict","data_loader.load_json() should return a dict for users.json."
+"passed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:17:52 UTC 2026","0","tests","test_schema_validation","TestSchemaValidatorBehavior","","","test_get_validation_errors_returns_list_for_invalid","schema_validator.get_validation_errors() returns error list for invalid data."
+"failed","Mon May 11 09:48:56 UTC 2026","Mon May 11 09:50:02 UTC 2026","65934","tests","test_data_driven","TestUsersDataDriven","","","test_delete_user[TC_USR_DEL_002-data1]","
+        DELETE /users/{id} — parametrized across 3 user IDs.
+        Verifies 204 status and empty response body for each.
+
+        Test cases: TC_USR_DEL_001 → TC_USR_DEL_003
+        "
+"failed","Mon May 11 09:32:27 UTC 2026","Mon May 11 09:33:33 UTC 2026","66056","tests","test_data_driven","TestUsersDataDriven","","","test_get_single_user[TC_USR_GET_002-data1]","
+        GET /users/{user_id} — parametrized across valid and invalid user IDs.
+        Test cases include: existing users (200) and non-existent IDs (404).
+
+        Test cases: TC_USR_GET_001 → TC_USR_GET_004
+        "
+"failed","Mon May 11 09:28:03 UTC 2026","Mon May 11 09:29:09 UTC 2026","65924","tests","test_auth","TestUnauthorizedAccess","","","test_request_with_invalid_token_behavior","GET /users/2 with a fake Bearer token — ReqRes accepts it for GET."
+"failed","Mon May 11 10:26:48 UTC 2026","Mon May 11 10:27:54 UTC 2026","66072","tests","test_users","TestGetUsers","","","test_get_nonexistent_user_returns_404","GET /users/9999 should return 404 for a user that doesn't exist."
+"failed","Mon May 11 09:17:03 UTC 2026","Mon May 11 09:18:09 UTC 2026","65793","tests","test_auth","TestLogin","","","test_login_empty_payload_returns_400","POST /login with empty body — should return 400."
+"broken","Mon May 11 10:25:42 UTC 2026","Mon May 11 10:26:48 UTC 2026","65920","tests","test_users","TestGetUsers","","","test_get_single_user_email_format","GET /users/2 — email field should contain '@'."
+"passed","Mon May 11 09:55:35 UTC 2026","Mon May 11 09:55:35 UTC 2026","574","tests","test_data_driven","TestPostsDataDriven","","","test_create_post[TC_POST_CREATE_002-data1]","
+        POST /posts — parametrized across 3 create scenarios:
+          TC_POST_CREATE_001: short payload with userId 1
+          TC_POST_CREATE_002: short payload with userId 5
+          TC_POST_CREATE_003: long title + body payload
+
+        Verifies 201, all expected fields present, echoed values,
+        and schema compliance for each case.
+        "
+"failed","Mon May 11 10:09:00 UTC 2026","Mon May 11 10:10:06 UTC 2026","65918","tests","test_schema_validation","TestAuthSchemas","","","test_login_success_schema","POST /login success — response must match LOGIN_SUCCESS_SCHEMA."
+"skipped","Mon May 11 09:11:33 UTC 2026","Mon May 11 09:12:40 UTC 2026","66206","tests","test_auth","TestLogin","","","test_invalid_password_returns_400","
+        POST /login with wrong password → expected 400.
+
+        KNOWN ISSUE: ReqRes demo API no longer validates passwords for known
+        registered emails (e.g. eve.holt@reqres.in). It returns 200 + token
+        with _meta.context='legacy_success' regardless of the password supplied.
+        This test is marked xfail to document the regression without hiding it.
+        A real production API must return 400/401 for wrong credentials.
+        "
+"broken","Mon May 11 10:23:30 UTC 2026","Mon May 11 10:24:36 UTC 2026","65924","tests","test_users","TestGetUsers","","","test_get_single_user_correct_id","GET /users/2 should return user with id=2."
+"failed","Mon May 11 09:20:21 UTC 2026","Mon May 11 09:21:27 UTC 2026","65800","tests","test_auth","TestRegister","","","test_valid_register_returns_token","POST /register — response must contain a 'token'."
+"failed","Mon May 11 10:10:06 UTC 2026","Mon May 11 10:11:12 UTC 2026","65913","tests","test_schema_validation","TestAuthSchemas","","","test_login_success_token_is_non_empty_string","POST /login — token must be a non-empty string."
+"failed","Mon May 11 09:54:26 UTC 2026","Mon May 11 09:55:32 UTC 2026","65941","tests","test_data_driven","TestAuthDataDriven","","","test_login_scenarios[TC_AUTH_LOGIN_005-data4]","
+        POST /login — parametrized across 5 login scenarios:
+          TC_AUTH_LOGIN_001: valid credentials   → 200 + token
+          TC_AUTH_LOGIN_002: wrong password      → 400 + error  [xfail: ReqRes demo limitation]
+          TC_AUTH_LOGIN_003: unknown email       → 400 + error
+          TC_AUTH_LOGIN_004: missing password    → 400 + error
+          TC_AUTH_LOGIN_005: empty payload       → 400 + error
+        "
+"failed","Mon May 11 09:18:09 UTC 2026","Mon May 11 09:19:15 UTC 2026","65920","tests","test_auth","TestRegister","","","test_valid_register_status_code","POST /register with valid credentials should return 200."
+"failed","Mon May 11 09:35:45 UTC 2026","Mon May 11 09:36:51 UTC 2026","66059","tests","test_data_driven","TestUsersDataDriven","","","test_create_user[TC_USR_CREATE_001-data0]","
+        POST /users — parametrized across 5 different user payloads.
+        Verifies status 201, all expected fields present,
+        echoed name/job, and schema compliance for each case.
+
+        Test cases: TC_USR_CREATE_001 → TC_USR_CREATE_005
+        "
+"passed","Mon May 11 09:55:44 UTC 2026","Mon May 11 09:55:45 UTC 2026","573","tests","test_posts","TestUpdatePostPatch","","","PATCH /posts/1 — only title updated",""
+"broken","Mon May 11 10:40:00 UTC 2026","Mon May 11 10:41:06 UTC 2026","65923","tests","test_users","TestUpdateUserPut","","","test_put_replaces_all_fields","
+        PUT sends complete replacement payload.
+        Both name and job in response should match exactly what was sent.
+        "
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","1","tests","test_data_driven","TestDataLoader","","","test_get_ids_correct_count","get_ids() should return same count as the JSON array length."
+"passed","Mon May 11 09:10:27 UTC 2026","Mon May 11 09:11:33 UTC 2026","65956","tests","test_auth","TestLogin","","","test_valid_login_response_content_type","POST /login — response Content-Type should be application/json."
+"failed","Mon May 11 10:33:24 UTC 2026","Mon May 11 10:34:30 UTC 2026","65924","tests","test_users","TestCreateUser","","","test_create_user_returns_created_at","POST /users response should include a 'createdAt' timestamp."
+"broken","Mon May 11 10:02:24 UTC 2026","Mon May 11 10:03:30 UTC 2026","65929","tests","test_schema_validation","TestUserSchemas","","","test_post_create_user_id_is_string","
+        POST /users — ReqRes returns 'id' as a STRING (not int).
+        This is a known quirk — schema enforces it explicitly.
+        In a real app, id would likely be an integer.
+        "
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:36 UTC 2026","1","tests","test_data_driven","TestDataLoader","","","test_load_json_invalid_file_raises","load_json() with a missing file should raise FileNotFoundError."
+"passed","Mon May 11 09:55:33 UTC 2026","Mon May 11 09:55:34 UTC 2026","511","tests","test_data_driven","TestPostsDataDriven","","","test_get_single_post[TC_POST_GET_003-data2]","
+        GET /posts/{id} — parametrized across 4 scenarios:
+          TC_POST_GET_001: post 1    → 200
+          TC_POST_GET_002: post 50   → 200
+          TC_POST_GET_003: post 100  → 200
+          TC_POST_GET_004: post 9999 → 404
+        "
+"passed","Mon May 11 09:30:15 UTC 2026","Mon May 11 09:31:21 UTC 2026","65929","tests","test_auth","TestUnauthorizedAccess","","","test_login_error_body_has_error_field","POST /login failure — response body must contain 'error' field."
+"failed","Mon May 11 09:21:27 UTC 2026","Mon May 11 09:22:33 UTC 2026","65920","tests","test_auth","TestRegister","","","test_register_missing_password_returns_400","POST /register without password should return 400."
+"passed","Mon May 11 09:55:36 UTC 2026","Mon May 11 09:55:37 UTC 2026","508","tests","test_posts","TestGetPosts","","","GET /posts returns 200 OK",""
+"passed","Mon May 11 09:55:42 UTC 2026","Mon May 11 09:55:43 UTC 2026","694","tests","test_posts","TestUpdatePostPut","","","PUT /posts/1 returns 200",""
+"passed","Mon May 11 10:17:52 UTC 2026","Mon May 11 10:17:52 UTC 2026","1","tests","test_schema_validation","TestSchemaValidatorBehavior","","","test_is_valid_returns_true_for_valid_data","schema_validator.is_valid() must return True for correct data."
+"broken","Mon May 11 10:30:06 UTC 2026","Mon May 11 10:31:12 UTC 2026","65919","tests","test_users","TestCreateUser","","","test_create_user_returns_name","POST /users response should echo back the 'name' we sent."
+"failed","Mon May 11 10:34:30 UTC 2026","Mon May 11 10:35:36 UTC 2026","65916","tests","test_users","TestCreateUser","","","test_create_user_with_empty_payload","POST /users with empty payload — server still returns 201 (ReqRes behavior)."
+"passed","Mon May 11 09:55:40 UTC 2026","Mon May 11 09:55:41 UTC 2026","572","tests","test_posts","TestCreatePost","","","POST /posts echoes title and userId",""
+"failed","Mon May 11 10:41:06 UTC 2026","Mon May 11 10:42:12 UTC 2026","66063","tests","test_users","TestUpdateUserPatch","","","test_patch_user_status_code","PATCH /users/2 should return 200 OK."
+"failed","Mon May 11 10:04:36 UTC 2026","Mon May 11 10:05:42 UTC 2026","66053","tests","test_schema_validation","TestUserSchemas","","","test_put_update_user_schema","PUT /users/2 — update response must match PUT_UPDATE_USER_SCHEMA."
+"failed","Mon May 11 10:01:18 UTC 2026","Mon May 11 10:02:24 UTC 2026","66057","tests","test_schema_validation","TestUserSchemas","","","test_post_create_user_schema","POST /users — creation response must match POST_CREATE_USER_SCHEMA."
+"failed","Mon May 11 09:53:20 UTC 2026","Mon May 11 09:54:26 UTC 2026","65920","tests","test_data_driven","TestAuthDataDriven","","","test_login_scenarios[TC_AUTH_LOGIN_004-data3]","
+        POST /login — parametrized across 5 login scenarios:
+          TC_AUTH_LOGIN_001: valid credentials   → 200 + token
+          TC_AUTH_LOGIN_002: wrong password      → 400 + error  [xfail: ReqRes demo limitation]
+          TC_AUTH_LOGIN_003: unknown email       → 400 + error
+          TC_AUTH_LOGIN_004: missing password    → 400 + error
+          TC_AUTH_LOGIN_005: empty payload       → 400 + error
+        "
+"broken","Mon May 11 10:03:30 UTC 2026","Mon May 11 10:04:36 UTC 2026","65922","tests","test_schema_validation","TestUserSchemas","","","test_post_create_user_created_at_is_string","POST /users — 'createdAt' must be a non-empty string (ISO timestamp)."

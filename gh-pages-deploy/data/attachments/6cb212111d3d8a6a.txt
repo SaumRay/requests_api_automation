@@ -1,0 +1,3 @@
+tests/test_schema_validation.py:129: in test_post_create_user_created_at_is_string
+    assert isinstance(body["createdAt"], str), "'createdAt' must be a string"
+E   KeyError: 'createdAt'

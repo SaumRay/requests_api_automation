@@ -1,0 +1,4 @@
+tests/test_users.py:58: in test_get_all_users_page_2
+    assert response.status_code == 200
+E   assert 429 == 200
+E    +  where 429 = <Response [429]>.status_code

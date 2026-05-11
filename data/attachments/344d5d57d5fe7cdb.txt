@@ -1,0 +1,6 @@
+tests/test_data_driven.py:206: in test_patch_update_user
+    assert response.status_code == data["expected_status"], (
+E   AssertionError: [TC_USR_PATCH_001] PATCH — update only name
+E       Expected 200, got 429
+E   assert 429 == 200
+E    +  where 429 = <Response [429]>.status_code

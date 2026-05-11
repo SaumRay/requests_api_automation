@@ -1,0 +1,3 @@
+tests/test_users.py:240: in test_put_replaces_all_fields
+    assert body["name"] == payload["name"]
+E   KeyError: 'name'
