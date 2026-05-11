@@ -5,4 +5,3 @@ reports/
 *.pyc
 .env
 config/config.yaml
-config.yaml
