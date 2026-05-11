@@ -1,11 +1,55 @@
-# config/config.yaml.example
-# Copy this to config/config.yaml and fill in your real values
+# ─────────────────────────────────────────────
+# API Automation Framework - Configuration
+# ─────────────────────────────────────────────
+# USAGE:
+#   1. Copy this file → config/config.yaml
+#   2. Fill in your real credentials below
+#   3. config.yaml is gitignored — NEVER commit it
+#
+# CI/CD:
+#   Real values are injected from GitHub Secrets at runtime.
+#   See .github/workflows/ci.yml for details.
+# ─────────────────────────────────────────────
 
-base_url: "https://reqres.in/api"
-api_key: "YOUR_API_KEY_HERE"
+environments:
+  dev:
+    # ReqRes.in — Used for Auth + User Management tests
+    base_url_users: "https://reqres.in/api"
 
+    # JSONPlaceholder — Used for Blog Posts CRUD tests
+    base_url_posts: "https://jsonplaceholder.typicode.com"
+
+    # Default request timeout (in seconds)
+    timeout: 10
+
+  staging:
+    base_url_users: "https://reqres.in/api"
+    base_url_posts: "https://jsonplaceholder.typicode.com"
+    timeout: 15
+
+# Active environment (switch between dev / staging)
+active_env: dev
+
+# ─────────────────────────────────────────────
+# Auth Credentials
+# ─────────────────────────────────────────────
 auth:
-  valid_email: "eve.holt@reqres.in"
-  valid_password: "YOUR_PASSWORD_HERE"
-  invalid_email: "ghost@notexist.com"
+  valid_email: "YOUR_VALID_EMAIL_HERE"
+  valid_password: "YOUR_VALID_PASSWORD_HERE"
+  invalid_email: "invalid@test.com"
   invalid_password: "wrongpassword"
+  api_key: "YOUR_API_KEY_HERE"
+
+# ─────────────────────────────────────────────
+# Common Headers
+# ─────────────────────────────────────────────
+headers:
+  Content-Type: "application/json"
+  Accept: "application/json"
+
+# ─────────────────────────────────────────────
+# Reporting
+# ─────────────────────────────────────────────
+reporting:
+  html_report_path: "reports/test_report.html"
+  allure_results_dir: "reports/allure-results"
