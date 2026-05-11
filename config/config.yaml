@@ -1,0 +1,46 @@
+# ─────────────────────────────────────────────
+# API Automation Framework - Configuration
+# ─────────────────────────────────────────────
+
+environments:
+  dev:
+    # ReqRes.in — Used for Auth + User Management tests
+    base_url_users: "https://reqres.in/api"
+
+    # JSONPlaceholder — Used for Blog Posts CRUD tests
+    base_url_posts: "https://jsonplaceholder.typicode.com"
+
+    # Default request timeout (in seconds)
+    timeout: 10
+
+  staging:
+    base_url_users: "https://reqres.in/api"
+    base_url_posts: "https://jsonplaceholder.typicode.com"
+    timeout: 15
+
+# Active environment (switch between dev / staging)
+active_env: dev
+
+# ─────────────────────────────────────────────
+# Auth Credentials (ReqRes.in test credentials)
+# ─────────────────────────────────────────────
+auth:
+  valid_email: "eve.holt@reqres.in"
+  valid_password: "cityslicka"
+  invalid_email: "invalid@test.com"
+  invalid_password: "wrongpassword"
+  api_key: "reqres_c1522612d64c40bf968914ef85391df9"
+
+# ─────────────────────────────────────────────
+# Common Headers
+# ─────────────────────────────────────────────
+headers:
+  Content-Type: "application/json"
+  Accept: "application/json"
+
+# ─────────────────────────────────────────────
+# Reporting
+# ─────────────────────────────────────────────
+reporting:
+  html_report_path: "reports/test_report.html"
+  allure_results_dir: "reports/allure-results"

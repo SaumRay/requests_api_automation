@@ -1,0 +1,330 @@
+{
+  "_comment": "Test data for data-driven tests — Phase 5",
+  "create_users": [
+    {
+      "id": "TC_USR_CREATE_001",
+      "description": "Create user with valid name and job",
+      "payload": {
+        "name": "Alice Johnson",
+        "job": "QA Engineer"
+      },
+      "expected_status": 201,
+      "expect_fields": [
+        "name",
+        "job",
+        "id",
+        "createdAt"
+      ]
+    },
+    {
+      "id": "TC_USR_CREATE_002",
+      "description": "Create user with numeric-looking name",
+      "payload": {
+        "name": "User 007",
+        "job": "Test Lead"
+      },
+      "expected_status": 201,
+      "expect_fields": [
+        "name",
+        "job",
+        "id",
+        "createdAt"
+      ]
+    },
+    {
+      "id": "TC_USR_CREATE_003",
+      "description": "Create user with special chars in job title",
+      "payload": {
+        "name": "Riya Das",
+        "job": "Sr. QA Engineer - Automation"
+      },
+      "expected_status": 201,
+      "expect_fields": [
+        "name",
+        "job",
+        "id",
+        "createdAt"
+      ]
+    },
+    {
+      "id": "TC_USR_CREATE_004",
+      "description": "Create user with minimal single-word values",
+      "payload": {
+        "name": "Sam",
+        "job": "Dev"
+      },
+      "expected_status": 201,
+      "expect_fields": [
+        "name",
+        "job",
+        "id",
+        "createdAt"
+      ]
+    },
+    {
+      "id": "TC_USR_CREATE_005",
+      "description": "Create user with long name and job title",
+      "payload": {
+        "name": "Christopher Alexander Williamson",
+        "job": "Principal Software Development Engineer in Test"
+      },
+      "expected_status": 201,
+      "expect_fields": [
+        "name",
+        "job",
+        "id",
+        "createdAt"
+      ]
+    }
+  ],
+  "update_users_put": [
+    {
+      "id": "TC_USR_PUT_001",
+      "description": "PUT — update name and job for user 2",
+      "user_id": 2,
+      "payload": {
+        "name": "Janet Updated",
+        "job": "Senior Designer"
+      },
+      "expected_status": 200,
+      "expected_name": "Janet Updated",
+      "expected_job": "Senior Designer"
+    },
+    {
+      "id": "TC_USR_PUT_002",
+      "description": "PUT — replace with completely different name and job",
+      "user_id": 2,
+      "payload": {
+        "name": "Arjun Sharma",
+        "job": "QA Automation Lead"
+      },
+      "expected_status": 200,
+      "expected_name": "Arjun Sharma",
+      "expected_job": "QA Automation Lead"
+    },
+    {
+      "id": "TC_USR_PUT_003",
+      "description": "PUT — update user 3",
+      "user_id": 3,
+      "payload": {
+        "name": "Emma Williams",
+        "job": "SDET II"
+      },
+      "expected_status": 200,
+      "expected_name": "Emma Williams",
+      "expected_job": "SDET II"
+    }
+  ],
+  "update_users_patch": [
+    {
+      "id": "TC_USR_PATCH_001",
+      "description": "PATCH — update only name",
+      "user_id": 2,
+      "payload": {
+        "name": "Patched Name Only"
+      },
+      "expected_status": 200,
+      "check_field": "name",
+      "check_value": "Patched Name Only"
+    },
+    {
+      "id": "TC_USR_PATCH_002",
+      "description": "PATCH — update only job",
+      "user_id": 2,
+      "payload": {
+        "job": "Patched Job Only"
+      },
+      "expected_status": 200,
+      "check_field": "job",
+      "check_value": "Patched Job Only"
+    },
+    {
+      "id": "TC_USR_PATCH_003",
+      "description": "PATCH — update both name and job for user 3",
+      "user_id": 3,
+      "payload": {
+        "name": "Both Fields",
+        "job": "Both Updated"
+      },
+      "expected_status": 200,
+      "check_field": "name",
+      "check_value": "Both Fields"
+    }
+  ],
+  "delete_users": [
+    {
+      "id": "TC_USR_DEL_001",
+      "description": "DELETE user 1 — expect 204 and empty body",
+      "user_id": 1,
+      "expected_status": 204
+    },
+    {
+      "id": "TC_USR_DEL_002",
+      "description": "DELETE user 2 — expect 204 and empty body",
+      "user_id": 2,
+      "expected_status": 204
+    },
+    {
+      "id": "TC_USR_DEL_003",
+      "description": "DELETE user 5 — expect 204 and empty body",
+      "user_id": 5,
+      "expected_status": 204
+    }
+  ],
+  "get_single_users": [
+    {
+      "id": "TC_USR_GET_001",
+      "description": "GET user 1 — valid user",
+      "user_id": 1,
+      "expected_status": 200
+    },
+    {
+      "id": "TC_USR_GET_002",
+      "description": "GET user 2 — valid user",
+      "user_id": 2,
+      "expected_status": 200
+    },
+    {
+      "id": "TC_USR_GET_003",
+      "description": "GET user 9999 — non-existent, expect 404",
+      "user_id": 9999,
+      "expected_status": 404
+    },
+    {
+      "id": "TC_USR_GET_004",
+      "description": "GET user 0 — invalid id, expect 404",
+      "user_id": 0,
+      "expected_status": 404
+    }
+  ],
+  "login_scenarios": [
+    {
+      "id": "TC_AUTH_LOGIN_001",
+      "description": "Valid login — expect 200 and token",
+      "payload": {
+        "email": "eve.holt@reqres.in",
+        "password": "cityslicka"
+      },
+      "expected_status": 200,
+      "expect_token": true,
+      "expect_error": false
+    },
+    {
+      "id": "TC_AUTH_LOGIN_002",
+      "description": "Wrong password — ReqRes demo returns 200 for known emails (xfail: legacy_success)",
+      "payload": {
+        "email": "eve.holt@reqres.in",
+        "password": "wrongpassword"
+      },
+      "expected_status": 400,
+      "expect_token": false,
+      "expect_error": true,
+      "_known_issue": "ReqRes demo API returns 200+token for known emails regardless of password. xfail documented in test_data_driven.py."
+    },
+    {
+      "id": "TC_AUTH_LOGIN_003",
+      "description": "Unknown email — expect 400 and error",
+      "payload": {
+        "email": "unknown@ghost.com",
+        "password": "anypassword"
+      },
+      "expected_status": 400,
+      "expect_token": false,
+      "expect_error": true
+    },
+    {
+      "id": "TC_AUTH_LOGIN_004",
+      "description": "Missing password field — expect 400",
+      "payload": {
+        "email": "eve.holt@reqres.in"
+      },
+      "expected_status": 400,
+      "expect_token": false,
+      "expect_error": true
+    },
+    {
+      "id": "TC_AUTH_LOGIN_005",
+      "description": "Empty payload — expect 400",
+      "payload": {},
+      "expected_status": 400,
+      "expect_token": false,
+      "expect_error": true
+    }
+  ],
+  "create_posts": [
+    {
+      "id": "TC_POST_CREATE_001",
+      "description": "Create post with userId 1",
+      "payload": {
+        "userId": 1,
+        "title": "My First Post",
+        "body": "This is the body of my first post."
+      },
+      "expected_status": 201,
+      "expect_fields": [
+        "userId",
+        "title",
+        "body",
+        "id"
+      ]
+    },
+    {
+      "id": "TC_POST_CREATE_002",
+      "description": "Create post with userId 5",
+      "payload": {
+        "userId": 5,
+        "title": "Another Post",
+        "body": "Another post body content here."
+      },
+      "expected_status": 201,
+      "expect_fields": [
+        "userId",
+        "title",
+        "body",
+        "id"
+      ]
+    },
+    {
+      "id": "TC_POST_CREATE_003",
+      "description": "Create post with long title and body",
+      "payload": {
+        "userId": 2,
+        "title": "A Very Long Title That Tests The Limits Of The Title Field In The API",
+        "body": "A very long body that simulates a real blog post with multiple sentences. It goes on and on to test how the API handles larger payloads gracefully."
+      },
+      "expected_status": 201,
+      "expect_fields": [
+        "userId",
+        "title",
+        "body",
+        "id"
+      ]
+    }
+  ],
+  "get_single_posts": [
+    {
+      "id": "TC_POST_GET_001",
+      "description": "GET post 1 — valid",
+      "post_id": 1,
+      "expected_status": 200
+    },
+    {
+      "id": "TC_POST_GET_002",
+      "description": "GET post 50 — mid-range valid id",
+      "post_id": 50,
+      "expected_status": 200
+    },
+    {
+      "id": "TC_POST_GET_003",
+      "description": "GET post 100 — last valid post",
+      "post_id": 100,
+      "expected_status": 200
+    },
+    {
+      "id": "TC_POST_GET_004",
+      "description": "GET post 9999 — non-existent, expect 404",
+      "post_id": 9999,
+      "expected_status": 404
+    }
+  ]
+}

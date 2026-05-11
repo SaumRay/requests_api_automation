@@ -1,0 +1,30 @@
+# ─────────────────────────────────────────────
+# API Automation Framework - Requirements
+# ─────────────────────────────────────────────
+
+# Core HTTP library
+requests==2.31.0
+
+# Testing framework
+pytest==7.4.3
+
+# HTML Test Reports
+pytest-html==4.1.1
+
+# Allure reporting support
+allure-pytest==2.13.2
+
+# JSON Schema Validation
+jsonschema==4.20.0
+
+# YAML config file support
+PyYAML==6.0.1
+
+# Environment variable management
+python-dotenv==1.0.0
+
+# Prettier assertion diffs in pytest
+pytest-clarity==1.0.1
+
+# Run tests in parallel (optional but useful)
+pytest-xdist==3.5.0

@@ -1,0 +1,11 @@
+# config/config.yaml.example
+# Copy this to config/config.yaml and fill in your real values
+
+base_url: "https://reqres.in/api"
+api_key: "YOUR_API_KEY_HERE"
+
+auth:
+  valid_email: "eve.holt@reqres.in"
+  valid_password: "YOUR_PASSWORD_HERE"
+  invalid_email: "ghost@notexist.com"
+  invalid_password: "wrongpassword"
