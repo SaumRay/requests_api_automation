@@ -5,6 +5,8 @@
 # Runner   : pytest + allure reports  (matches run_tests.sh / pytest.ini)
 # Secrets  : API key + credentials injected into config/config.yaml
 #            at runtime — config.yaml is gitignored, never committed.
+# Pages    : Allure report published to GitHub Pages after every run
+#            Live URL: https://<YOUR_USERNAME>.github.io/<YOUR_REPO>/
 # ─────────────────────────────────────────────────────────────────────
 
 name: API Automation Tests
@@ -13,6 +15,10 @@ on:
   push:
     branches:
       - main
+
+# Required for GitHub Pages deployment
+permissions:
+  contents: write
 
 jobs:
   test:
@@ -57,8 +63,8 @@ jobs:
       # secrets stored in:
       #   GitHub -> Your Repo -> Settings -> Secrets and variables -> Actions
       #
-      # Secrets to add (one-time setup):
-      #   REQRES_API_KEY   -> your actual ReqRes API key (rotate if exposed)
+      # Secrets required (one-time setup):
+      #   REQRES_API_KEY   -> your actual ReqRes API key
       #   VALID_EMAIL      -> eve.holt@reqres.in
       #   VALID_PASSWORD   -> cityslicka
       #
@@ -85,32 +91,47 @@ jobs:
       # do NOT cause the pipeline to fail.
       - name: Run pytest
         run: pytest
-        continue-on-error: true         # upload reports even if tests fail
+        continue-on-error: true         # publish reports even if tests fail
 
-      # ── 8. Generate Allure HTML report ───────────────────────────────
-      # Converts raw JSON in reports/allure-results -> full HTML report
+      # ── 8. Fetch previous Allure history from gh-pages ───────────────
+      # Allure can show a trend graph across runs (pass rate over time).
+      # To do this it needs the history/ folder from the PREVIOUS report.
+      # We check out the gh-pages branch and copy history/ into the fresh
+      # allure-results so the new report includes the trend.
+      # If gh-pages doesn't exist yet (first run) this step is skipped safely.
+      - name: Fetch Allure history from gh-pages
+        if: always()
+        run: |
+          if git fetch origin gh-pages 2>/dev/null; then
+            git checkout origin/gh-pages -- history/ 2>/dev/null || true
+            cp -r history reports/allure-results/history 2>/dev/null || true
+            echo "History restored from gh-pages."
+          else
+            echo "No gh-pages branch yet — skipping history restore (first run)."
+          fi
+
+      # ── 9. Generate Allure HTML report ───────────────────────────────
+      # Converts raw JSON + history -> full HTML report in reports/allure-report
       - name: Generate Allure HTML report
-        if: always()                    # run even if pytest step failed
+        if: always()
         run: |
           allure generate reports/allure-results \
             -o reports/allure-report \
             --clean
 
-      # ── 9. Upload Allure HTML report as CI artifact ──────────────────
-      # After job completes:
-      #   GitHub -> Actions -> your run -> Artifacts -> allure-report
-      # Download the zip and open index.html locally to view full report.
-      - name: Upload Allure report
+      # ── 10. Upload Allure HTML report as CI artifact ─────────────────
+      # Backup download via Actions -> Artifacts -> allure-report
+      - name: Upload Allure report artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: reports/allure-report/
-          retention-days: 14            # auto-deleted after 14 days
+          retention-days: 14
 
-      # ── 10. Upload pytest-html report as CI artifact ─────────────────
+      # ── 11. Upload pytest-html report as CI artifact ─────────────────
       # Single-file HTML report -- quick pass/fail overview.
-      - name: Upload HTML report
+      - name: Upload HTML report artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -118,12 +139,45 @@ jobs:
           path: reports/test_report.html
           retention-days: 14
 
-      # ── 11. Print summary to CI console ──────────────────────────────
-      - name: Show test summary
+      # ── 12. Publish Allure report to GitHub Pages ────────────────────
+      # Pushes reports/allure-report/ to the gh-pages branch.
+      # GitHub Pages serves that branch at:
+      #   https://<YOUR_USERNAME>.github.io/<YOUR_REPO>/
+      #
+      # Also copies the history/ folder back into gh-pages root so the
+      # NEXT run can restore it in Step 8 (trend graph continuity).
+      #
+      # Requires: permissions: contents: write  (set at top of this file)
+      # Requires: Settings -> Pages -> Source: gh-pages branch / (root)
+      - name: Publish Allure report to GitHub Pages
         if: always()
         run: |
+          # Configure git identity for the push
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Prepare a clean deploy folder
+          mkdir -p gh-pages-deploy
+
+          # Copy the full generated report
+          cp -r reports/allure-report/. gh-pages-deploy/
+
+          # Preserve history/ in gh-pages root for next run's trend graph
+          cp -r reports/allure-report/history gh-pages-deploy/history 2>/dev/null || true
+
+          # Switch to (or create) the gh-pages branch
+          git checkout --orphan gh-pages-tmp
+
+          # Wipe everything and replace with the fresh report
+          git rm -rf . --quiet
+          cp -r gh-pages-deploy/. .
+
+          # Commit and force-push to gh-pages
+          git add -A
+          git commit -m "Deploy Allure report — $(date '+%Y-%m-%d %H:%M:%S')"
+          git push origin HEAD:gh-pages --force
+
           echo "================================================"
-          echo "  CI run complete."
-          echo "  Allure report : Actions -> Artifacts -> allure-report"
-          echo "  HTML report   : Actions -> Artifacts -> pytest-html-report"
+          echo "  Allure report published to GitHub Pages!"
+          echo "  URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
           echo "================================================"
