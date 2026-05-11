@@ -1,0 +1,129 @@
+# ─────────────────────────────────────────────────────────────────────
+# GitHub Actions CI Pipeline
+# Project  : requests_api_automation
+# Trigger  : Push to main
+# Runner   : pytest + allure reports  (matches run_tests.sh / pytest.ini)
+# Secrets  : API key + credentials injected into config/config.yaml
+#            at runtime — config.yaml is gitignored, never committed.
+# ─────────────────────────────────────────────────────────────────────
+
+name: API Automation Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Pytest + Generate Allure Report
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ── 1. Checkout source code ──────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Set up Python 3.11 ────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"                   # caches pip downloads between runs
+
+      # ── 3. Install Python dependencies ──────────────────────────────
+      # Installs everything in requirements.txt:
+      #   requests, pytest, pytest-html, allure-pytest, jsonschema,
+      #   PyYAML, python-dotenv, pytest-clarity, pytest-xdist
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # ── 4. Install Allure CLI ────────────────────────────────────────
+      # Needed to run: allure generate (converts raw JSON -> HTML report)
+      - name: Install Allure CLI
+        run: |
+          wget -q https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.tgz
+          tar -zxf allure-2.27.0.tgz
+          sudo mv allure-2.27.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+          allure --version
+
+      # ── 5. Reconstruct config/config.yaml from GitHub Secrets ───────
+      # config/config.yaml is gitignored (contains your real credentials).
+      # We copy config/config.yaml.example and inject real values from
+      # secrets stored in:
+      #   GitHub -> Your Repo -> Settings -> Secrets and variables -> Actions
+      #
+      # Secrets to add (one-time setup):
+      #   REQRES_API_KEY   -> your actual ReqRes API key (rotate if exposed)
+      #   VALID_EMAIL      -> eve.holt@reqres.in
+      #   VALID_PASSWORD   -> cityslicka
+      #
+      # The real config.yaml only exists in the CI runner memory
+      # during this job -- never stored, never logged.
+      - name: Reconstruct config.yaml from GitHub Secrets
+        run: |
+          cp config/config.yaml.example config/config.yaml
+          sed -i "s|YOUR_API_KEY_HERE|${{ secrets.REQRES_API_KEY }}|g"       config/config.yaml
+          sed -i "s|YOUR_VALID_EMAIL_HERE|${{ secrets.VALID_EMAIL }}|g"       config/config.yaml
+          sed -i "s|YOUR_VALID_PASSWORD_HERE|${{ secrets.VALID_PASSWORD }}|g" config/config.yaml
+
+      # ── 6. Create reports directory ──────────────────────────────────
+      # pytest.ini writes reports to reports/ -- must exist before pytest runs
+      - name: Create reports directory
+        run: mkdir -p reports/allure-results
+
+      # ── 7. Run full test suite ───────────────────────────────────────
+      # pytest.ini already sets:
+      #   -v, --tb=short, --html=reports/test_report.html,
+      #   --self-contained-html, --alluredir=reports/allure-results
+      # So we just call bare pytest here -- no duplicate flags needed.
+      # The 3 xfail tests (ReqRes demo regressions) show as XFAIL and
+      # do NOT cause the pipeline to fail.
+      - name: Run pytest
+        run: pytest
+        continue-on-error: true         # upload reports even if tests fail
+
+      # ── 8. Generate Allure HTML report ───────────────────────────────
+      # Converts raw JSON in reports/allure-results -> full HTML report
+      - name: Generate Allure HTML report
+        if: always()                    # run even if pytest step failed
+        run: |
+          allure generate reports/allure-results \
+            -o reports/allure-report \
+            --clean
+
+      # ── 9. Upload Allure HTML report as CI artifact ──────────────────
+      # After job completes:
+      #   GitHub -> Actions -> your run -> Artifacts -> allure-report
+      # Download the zip and open index.html locally to view full report.
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: reports/allure-report/
+          retention-days: 14            # auto-deleted after 14 days
+
+      # ── 10. Upload pytest-html report as CI artifact ─────────────────
+      # Single-file HTML report -- quick pass/fail overview.
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-html-report
+          path: reports/test_report.html
+          retention-days: 14
+
+      # ── 11. Print summary to CI console ──────────────────────────────
+      - name: Show test summary
+        if: always()
+        run: |
+          echo "================================================"
+          echo "  CI run complete."
+          echo "  Allure report : Actions -> Artifacts -> allure-report"
+          echo "  HTML report   : Actions -> Artifacts -> pytest-html-report"
+          echo "================================================"
